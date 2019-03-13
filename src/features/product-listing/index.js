@@ -34,4 +34,5 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
+// this produces the productlisting component with the mapStateToProps and mapDispatchToProps as a combined function, that serves as props for the product listing component 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductListing)
