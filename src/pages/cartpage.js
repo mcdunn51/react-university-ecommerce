@@ -1,11 +1,7 @@
 import React from 'react'
 
-const CartPage = () => {
-    return (
-        <div>
-            <h1>CartPage</h1>
-        </div>
-    )
+export default function CartPage(props) {
+  return <div>
+    <h2>My Cart</h2>
+  </div>
 }
-
-export default CartPage;
