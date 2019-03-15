@@ -1,36 +1,28 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import axios from 'axios'
 
 import Cart from '../cart'
 import CheckoutForm from './form'
-
+import axios from 'axios'
 
 function submitOrder(values, cart) {
   const { email, name } = values.order
-  // send the order
-  axios({
-    method: 'post',
-    url: 'https://student-example-api.herokuapp.com/v1/orders.json',
-    data: {
-      order: {
-        name,
-        email,
-        order_items_attributes: cart.map(item => ({
-          product_id: item.id,
-          qty: item.quantity,
-        }))
-      }
+
+  axios.post('https://student-example-api.herokuapp.com/v1/orders.json', {
+    order: {
+      name,
+      email,
+      order_items_attributes: cart.map(item => ({
+        product_id: item.id,
+        qty: item.quantity,
+      }))
     }
   })
-    .then((response) => {
+    .then(response => {
       console.log(response.data);
-      // if (response.errors) {
-      //   alert('something went wrong!')
-      //   return
-      // }
-      document.location.href = `/orders/${response.id}`
-    });
+      document.location.href = `/orders/${response.data.id}`
+    })
+
 }
 
 function Checkout(props) {

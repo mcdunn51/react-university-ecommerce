@@ -2,23 +2,20 @@ import React from 'react'
 
 import axios from 'axios'
 
+
 class Order extends React.Component {
   state = {
     order: null
   }
 
   componentDidMount() {
-    // get the order info back
-    axios({
-      method: 'get',
-      url: `https://student-example-api.herokuapp.com/v1/orders/${this.props.id}`,
-    })
+
+    axios.get(`https://student-example-api.herokuapp.com/v1/orders/${this.props.id}`)
       .then(response => {
-        console.log(response.data)
         this.setState({
           order: response.data
         })
-      });
+      })
   }
 
   renderOrder() {

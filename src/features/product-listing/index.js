@@ -1,21 +1,29 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import axios from 'axios';
+import axios from 'axios'
 
 import ProductListItem from './product-list-item'
 
 class ProductListing extends React.Component {
   componentDidMount() {
-    // get the products
+
     const { loadProducts } = this.props
+
     axios.get('https://student-example-api.herokuapp.com/v1/products.json')
       .then(response => {
+        // handle success
+        // console.log(response);
         loadProducts(response.data)
       })
+      .catch(function (error) {
+        // handle error
+        // console.log(error);
+      });
   }
 
   render() {
     const { addToCart, removeFromCart, products, cart } = this.props
+
     return <div className='product-listing'>
       {
         products.map(product =>
